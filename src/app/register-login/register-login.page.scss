@@ -1,0 +1,103 @@
+.back-color{
+  background-color: #3cd0fc;
+  height: 100%;
+  width: 100%;
+
+
+
+}
+
+.button-color{
+  padding-top: 29%;
+}
+.image-logo{
+  width: 100%;
+  height: auto;
+}
+.color-login{
+  background-color: #3cd0fc;
+  color: white;
+  border: 1px solid white;
+
+  border-radius: 10px;
+  width: 114px;
+  height: 43px;
+  position: absolute;
+  bottom: 6%;
+  right: 0;
+
+}
+@media only screen and (min-width: 400px) {
+  .color-register {
+    left: 6% !important;
+  }
+}
+  @media only screen and (min-width: 400px) {
+    .color-login {
+      right: 6% !important;
+    }
+}
+@media only screen and (min-width: 500px) {
+  .color-register {
+    left: 16% !important;
+  }
+}
+@media only screen and (min-width: 500px ) {
+  .color-login {
+    right: 16% !important;
+  }
+}
+@media only screen and (min-width: 576px) {
+  .color-register {
+    left: 6% !important;
+  }
+}
+@media only screen and (min-width: 576px ) {
+  .color-login {
+    right: 6% !important;
+  }
+}
+@media only screen and (min-width: 576px) {
+  .color-register {
+    left: 6% !important;
+    bottom: 15% !important;
+  }
+}
+@media only screen and (min-width: 576px ) {
+  .color-login {
+    right: 6% !important;
+    bottom: 15% !important;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .color-register {
+    left: 15% !important;
+    bottom: 20% !important;
+  }
+}
+@media only screen and (min-width: 1000px ) {
+  .color-login {
+    right: 15% !important;
+    bottom: 20% !important;
+  }
+}
+.color-register{
+  background-color: white;
+  color: #3cd0fc;
+  width: 114px;
+  height: 43px;
+  border-radius: 10px;
+  position: absolute;
+  bottom: 6%;
+  left: 0;
+}
+.text-logo{
+  text-align: center;
+  margin-top: 0px !important;
+  color: white;
+}
+.bakianname{
+ text-align: center;color: white;margin-top: 0px;margin-bottom: 10%;
+}
+
+

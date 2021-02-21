@@ -1,0 +1,51 @@
+
+
+<ion-content >
+  <ion-header>
+    <ion-buttons>
+      <ion-back-button defaultHref="/login"></ion-back-button>
+    </ion-buttons>
+  </ion-header>
+  <ion-grid >
+    <ion-row>
+      <ion-col size-md="4" offset-md="4" size-xs="12">
+        <h3 class="header-register">فراموشی رمز عبور</h3>
+        <p class="login-text">با وارد کردن شماره تلفنی که حساب کاربری خود را با ایجاد کرده اید،رمز عبور برای شما ارسال می شود</p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size-md="4" offset-md="4" size-xs="12" class="button-grid2">
+        <div>
+          <ion-label >شماره تلفن همراه</ion-label>
+          <ion-input class="input-register" placeholder="شماره همراه"></ion-input>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size-md="4" offset-md="4" size-xs="12" class="button-grid">
+        <button class="color-register" expand="full">ارسال</button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size-md="4" offset-md="4" size-xs="12" class="button-grid" style="text-align: center;margin-top: 5%">
+        <a [routerLink]="['/', 'login']" style="
+  color: #3cd0fc;">بازگشت به صفحه ورود</a>
+      </ion-col>
+    </ion-row>
+    <!--<ion-row>
+      <ion-col size="12" class="button-grid3">
+        <p class="text-color">یا ورود با حساب های کاربری شبکه های اجتماعی</p>
+      </ion-col>
+      <ion-col size="6" class="grid-twiiter">
+        <button class="color-twitter" expand="full"> توییتر <ion-icon name="logo-twitter"></ion-icon></button>
+      </ion-col>
+
+      <ion-col size="6" class="grid-facebook">
+        <button class="color-facebook" expand="full" > فیس بوک<ion-icon name="logo-facebook"></ion-icon></button>
+      </ion-col>
+    </ion-row>-->
+
+  </ion-grid>
+
+</ion-content>

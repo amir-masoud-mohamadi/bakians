@@ -1,0 +1,53 @@
+
+
+<ion-content>
+  <ion-header>
+    <ion-buttons>
+      <ion-back-button defaultHref="/register"></ion-back-button>
+    </ion-buttons>
+  </ion-header>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-md="4" offset-md="4" size-xs="12">
+        <h3 class="header-register">تایید شماره همراه</h3>
+        <p class="login-text">پبام کوتاهی به شماره تلفن همراه شما <span class="code-number" *ngIf="phoneNumber">{{phoneNumber}}</span> ارسال شده است</p>
+      </ion-col>
+    </ion-row>
+    <form [formGroup]="form" (ngSubmit)="addRecipe()">
+    <ion-row>
+      <ion-col size-md="4" offset-md="4" size-xs="12" class="button-grid2">
+        <ion-input class="input-register" formControlName="code" tabIndex="0" maxlength="4"></ion-input>
+
+      </ion-col>
+
+
+
+
+
+    </ion-row>
+    <ion-row>
+      <ion-col size-md="4" offset-md="4" size-xs="12" class="button-grid">
+        <button class="color-register" expand="full" type="submit">تایید</button>
+      </ion-col>
+    </ion-row>
+    </form>
+    <!--<ion-row>
+      <ion-col size="12" class="button-grid3">
+        <p class="text-color">یا ثبت نام شبکه های اجتماعی</p>
+      </ion-col>
+      <ion-col size="6" class="grid-twiiter">
+        <button class="color-twitter" expand="full" [routerLink]="['/', 'register']"> توییتر <ion-icon name="logo-twitter"></ion-icon></button>
+      </ion-col>
+
+      <ion-col size="6" class="grid-facebook">
+        <button class="color-facebook" expand="full" [routerLink]="['/', 'register']"> فیس بوک<ion-icon name="logo-facebook"></ion-icon></button>
+      </ion-col>
+    </ion-row>-->
+    <ion-row>
+      <ion-col size-md="4" offset-md="4" size-xs="12" class="privacy">
+        <p class="login-text">پیامک را دریافت نکرده اید؟ <a>ارسال مجدد</a></p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

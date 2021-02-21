@@ -1,0 +1,101 @@
+<ion-content>
+  <ion-header>
+    <ion-buttons>
+      <ion-back-button defaultHref="/register/town-list"></ion-back-button>
+    </ion-buttons>
+  </ion-header>
+  <ion-grid >
+    <form [formGroup]="form" (ngSubmit)="addRecipe()">
+      <ion-row>
+        <ion-col size-md="4" offset-md="4" size-xs="12">
+          <h3 class="header-register">اطلاعات خودرو</h3>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-md="4" offset-md="4" size-xs="12" class="button-grid2">
+          <!--<ion-list>
+            <ion-item>
+              <ion-label>مدل کمپانی</ion-label>
+              <ion-select formControlName="company" >
+                <ion-select-option *ngFor="let select of listCompany">{{select.name}}</ion-select-option>
+
+              </ion-select>
+            </ion-item>
+
+            &lt;!&ndash;<ion-item>
+              <ion-label>Hair Color</ion-label>
+              <ion-select value="brown" okText="Okay" cancelText="Dismiss">
+                <ion-select-option value="brown">Brown</ion-select-option>
+                <ion-select-option value="blonde">Blonde</ion-select-option>
+                <ion-select-option value="black">Black</ion-select-option>
+                <ion-select-option value="red">Red</ion-select-option>
+              </ion-select>
+            </ion-item>&ndash;&gt;
+
+          </ion-list>-->
+          <select name="company" formControlName="company" id="company" class="input-register5" (change)="onChange($event)">
+            <option *ngFor="let select of listCompany" value="{{select.id}}">{{select.name}}</option>
+          </select>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-md="4" offset-md="4" size-xs="12" class="button-grid2">
+          <select name="company" class="input-register5" formControlName="model">
+            <option value="{{s.id}}"  *ngFor="let s of listModels" >{{s.name}}</option>
+          </select>
+        </ion-col>
+      </ion-row>
+      <ion-row formGroupName="plate">
+        <ion-col size-md="4" offset-md="4" size-xs="12">
+          <h3>پلاک خودرو</h3>
+        </ion-col>
+          <ion-col size-md="4" size-xs="0"></ion-col>
+        <!--<ion-col size-xs="3">
+
+        </ion-col>-->
+        <ion-col size-md="4" offset-md="4" size-xs="12" class="image-plate">
+          <img src="../../../assets/img/plate.png" alt="">
+
+            <input class="number-plate1" formControlName="plate1" maxlength="2" placeholder="33">
+
+
+            <input class="number-plate2" formControlName="plate3" maxlength="3" placeholder="333">
+
+          <select name="company"  class="number-plate3"  formControlName="plate2">
+            <option value="{{select.id}}"  *ngFor="let select of plak" >{{select.name}}</option>
+          </select>
+
+            <input class="number-plate4" formControlName="plate4" maxlength="2" placeholder="33">
+
+        </ion-col>
+        <!--<ion-col size-xs="3">
+
+        </ion-col>
+
+        <ion-col size-xs="3">
+
+        </ion-col>-->
+      </ion-row>
+      <ion-row>
+        <ion-col size-md="4" offset-md="4" size-xs="12" class="button-grid">
+          <button class="color-register" expand="full" type="submit">تایید</button>
+        </ion-col>
+      </ion-row>
+    </form>
+    <!--<ion-row>
+      <ion-col size="12" class="button-grid3">
+        <p class="text-color">یا ورود با حساب های کاربری شبکه های اجتماعی</p>
+      </ion-col>
+      <ion-col size="6" class="grid-twiiter">
+        <button class="color-twitter" expand="full"> توییتر <ion-icon name="logo-twitter"></ion-icon></button>
+      </ion-col>
+
+      <ion-col size="6" class="grid-facebook">
+        <button class="color-facebook" expand="full" > فیس بوک<ion-icon name="logo-facebook"></ion-icon></button>
+      </ion-col>
+    </ion-row>-->
+
+
+  </ion-grid>
+
+</ion-content>

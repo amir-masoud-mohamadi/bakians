@@ -1,0 +1,71 @@
+<ion-content>
+  <ion-content>
+    <ion-header>
+      <ion-buttons>
+        <ion-back-button defaultHref="/register/confirm"></ion-back-button>
+      </ion-buttons>
+    </ion-header>
+    <ion-grid *ngIf="listTown">
+      <ion-row>
+        <ion-col size-md="4" offset-md="4" size-xs="12">
+          <h3 class="header-register">انتخاب استان</h3>
+        </ion-col>
+      </ion-row>
+      <form [formGroup]="form" (ngSubmit)="addRecipe()">
+        <ion-row>
+          <ion-col size-md="4" offset-md="4" size-xs="12" class="button-grid2">
+            <!--<ion-searchbar showCancelButton="always" palceholder="جستجو بر اساس استان"></ion-searchbar>-->
+
+            <div>
+
+              <ion-input class="input-register"
+                         (ionChange)="segmentChanged($event)" placeholder="جستجو بر اساس استان" formControlName="town">
+                <ion-icon class="icon-input" name="menu-outline"></ion-icon>
+              </ion-input>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size-md="4" offset-md="4" size-xs="12">
+            <ion-list *ngIf="!flag && flagTown">
+              <ion-item  *ngFor="let s of listTown" (click)="onClickTown(s)">
+                <ion-label>{{s.name}}</ion-label>
+              </ion-item>
+
+            </ion-list>
+            <ion-list *ngIf="flag && flagTown">
+              <ion-item  *ngFor="let s of listTwo" (click)="onClickTown(s)">
+                <ion-label>{{s.name}}</ion-label>
+              </ion-item>
+
+            </ion-list>
+            <ion-list *ngIf="!flagTown">
+              <ion-item (click)="onClickTown(s)">
+                <ion-label>داده ای یافت نشد</ion-label>
+              </ion-item>
+
+            </ion-list>
+
+          </ion-col>
+        </ion-row>
+      </form>
+      <!--<ion-row>
+        <ion-col size="12" class="button-grid3">
+          <p class="text-color">یا ثبت نام شبکه های اجتماعی</p>
+        </ion-col>
+        <ion-col size="6" class="grid-twiiter">
+          <button class="color-twitter" expand="full" [routerLink]="['/', 'register']"> توییتر <ion-icon name="logo-twitter"></ion-icon></button>
+        </ion-col>
+
+        <ion-col size="6" class="grid-facebook">
+          <button class="color-facebook" expand="full" [routerLink]="['/', 'register']"> فیس بوک<ion-icon name="logo-facebook"></ion-icon></button>
+        </ion-col>
+      </ion-row>-->
+    </ion-grid>
+
+  </ion-content>
+
+
+
+
+</ion-content>

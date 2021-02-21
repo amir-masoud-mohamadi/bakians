@@ -1,0 +1,50 @@
+<ion-content>
+  <ion-header>
+    <ion-buttons>
+      <ion-back-button defaultHref="/register/code"></ion-back-button>
+    </ion-buttons>
+  </ion-header>
+  <ion-grid >
+    <form [formGroup]="form" (ngSubmit)="addRecipe()">
+      <ion-row>
+        <ion-col size-md="4" offset-md="4" size-xs="12">
+          <h3 class="header-register">تکمیل اطلاعات کاربری</h3>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-md="4" offset-md="4" size-xs="12" class="button-grid2">
+          <div>
+            <ion-label >نام و نام خانوادگی</ion-label>
+            <ion-input class="input-register" class="input-register" placeholder="نام" formControlName="name"></ion-input>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-md="4" offset-md="4" size-xs="12" class="button-grid2">
+          <div>
+            <ion-label >رمز عبور</ion-label>
+            <ion-input type="password" class="input-register" formControlName="password"></ion-input>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-md="4" offset-md="4" size-xs="12" class="button-grid">
+          <button class="color-register" expand="full" type="submit">تایید</button>
+        </ion-col>
+      </ion-row>
+    </form>
+    <!--<ion-row>
+      <ion-col size="12" class="button-grid3">
+        <p class="text-color">یا ورود با حساب های کاربری شبکه های اجتماعی</p>
+      </ion-col>
+      <ion-col size="6" class="grid-twiiter">
+        <button class="color-twitter" expand="full"> توییتر <ion-icon name="logo-twitter"></ion-icon></button>
+      </ion-col>
+
+      <ion-col size="6" class="grid-facebook">
+        <button class="color-facebook" expand="full" > فیس بوک<ion-icon name="logo-facebook"></ion-icon></button>
+      </ion-col>
+    </ion-row>-->
+  </ion-grid>
+
+</ion-content>
