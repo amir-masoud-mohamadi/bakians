@@ -1,0 +1,7 @@
+{
+  "name": "bakian",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
