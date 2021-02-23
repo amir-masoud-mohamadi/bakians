@@ -30,6 +30,10 @@ const routes: Routes = [
     loadChildren: () => import('./login/forget/forget.module').then( m => m.ForgetPageModule)
   },
   {
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+  },
+  {
     path: 'location-permision',
     loadChildren: () => import('./location-permision/location-permision.module').then( m => m.LocationPermisionPageModule)
   },

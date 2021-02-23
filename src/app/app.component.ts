@@ -11,6 +11,7 @@ import {AlertController, Platform} from '@ionic/angular';
 })
 export class AppComponent implements OnInit {
   public selectedIndex = 0;
+
   listProduct;
   numberCart;
   public appPages = [
