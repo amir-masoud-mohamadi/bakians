@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Capacitor, Geolocation, Plugins} from '@capacitor/core';
+import {Router} from '@angular/router';
+import {async} from 'q';
 
 @Component({
   selector: 'app-register-login',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterLoginPage implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    if  (!Capacitor.isPluginAvailable('Geolocation')) {
+      console.log('incorrect');
+    } else {
+      const coordinates = await Plugins.Geolocation.getCurrentPosition();
+      console.log('Current', coordinates);
+      this.router.navigate(['/', 'register-login', coordinates.coords.latitude]);
+    }
   }
 
 }

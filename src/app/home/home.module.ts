@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { HomePageRoutingModule } from './home-routing.module';
 
 import { HomePage } from './home.page';
-import {NgxMapboxGLModule} from 'mapir-angular-component';
+
 
 @NgModule({
   imports: [
@@ -15,7 +15,6 @@ import {NgxMapboxGLModule} from 'mapir-angular-component';
     FormsModule,
     IonicModule,
     HomePageRoutingModule,
-    NgxMapboxGLModule
   ],
   declarations: [HomePage]
 })
