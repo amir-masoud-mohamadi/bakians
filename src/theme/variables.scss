@@ -82,7 +82,27 @@ body{
   --ion-color-primary: #00a74b;
 }
 
-ion-button {
+ion-button.color-login {
   // --background: blue;
-  --box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.6);
+  --border-color: white;
+  --border-radius: 10px;
+  --background: #3cd0fc ;
+  --color: white;
+  --border-width:1px;
+}
+ion-button.color-register2 {
+  // --background: blue;
+
+  --border-radius: 10px !important;
+  --background: #3cd0fc ;
+  --color: white;
+  --box-shadow: 0px 4px 15px #8fdcf3;
+}
+ion-button.color-register {
+  // --background: blue;
+
+  --border-radius: 10px;
+  --background: white ;
+  --color: #3cd0fc;
+  --box-shadow: none !important;
 }

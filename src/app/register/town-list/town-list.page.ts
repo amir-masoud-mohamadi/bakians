@@ -82,14 +82,14 @@ export class TownListPage implements OnInit {
     console.log(this.flagTown);
     if(this.text = '') {
 
-      this.listTwo = [{id:'1', name: 'ads'}];
+      this.listTwo = [{id: '1', name: 'ads'}];
       this.flag = false;
 
     } else {
-      this.listTwo = [{id:'1', name: 'ads'}];
+      this.listTwo = [{id: '1', name: 'ads'}];
 
-      for (let i=0; i< this.listTown.length; i++) {
-        if(this.listTown[i].name.indexOf(event.target.value)> -1) {
+      for (let i = 0; i < this.listTown.length; i++) {
+        if (this.listTown[i].name.indexOf(event.target.value)> -1) {
 
           this.flag = true;
 
@@ -102,7 +102,7 @@ export class TownListPage implements OnInit {
       }
       console.log('flagTown1234');
       console.log(this.listTwo.length);
-      if(this.listTwo.length == 1 || this.listTwo.length == 0){
+      if(this.listTwo.length === 1 || this.listTwo.length == 0){
         console.log('flagTown2');
         console.log(this.flagTown);
         this.flagTown = false;

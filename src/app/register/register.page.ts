@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AlertController, LoadingController, Platform} from '@ionic/angular';
-import {loginRegister} from "../shared/service/login-register";
-import {DataModel} from "./code/data-model";
+import {loginRegister} from '../shared/service/login-register';
+import {DataModel} from './code/data-model';
 import {HttpResponse} from '@angular/common/http';
-
+import jsSHA from 'jssha'
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
@@ -18,7 +18,9 @@ export class RegisterPage implements OnInit {
               private alertCtrl: AlertController,
               private userService: loginRegister,
               private loading: LoadingController
-              ) { }
+              ) {
+
+  }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -38,11 +40,13 @@ export class RegisterPage implements OnInit {
         if (phone.length === 11){
           phone = phone.replace('0', '');
           console.log('10');
-          this.userService.reciveCode(this.form.value.phoneNumber).subscribe((com: HttpResponse<DataModel>) => {
+          this.userService.reciveCode(phone).subscribe((com: HttpResponse<DataModel>) => {
             if (com.status === 200) {
               if (com.body.success === '1'){
                 console.log(com.body);
-                localStorage.setItem('phoneNumber', this.form.value.phoneNumber);
+                localStorage.setItem('phoneNumber', phone);
+                localStorage.setItem('code', com.body.code);
+                console.log(com.body.code);
                 this.loading.dismiss();
                 this.router.navigate(['/', 'register', 'code']);
               }

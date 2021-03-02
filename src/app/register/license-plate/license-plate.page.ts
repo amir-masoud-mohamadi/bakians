@@ -163,9 +163,9 @@ export class LicensePlatePage implements OnInit {
               ) { }
 
   ngOnInit() {
-    if(localStorage.getItem('phoneNumber') !== undefined && localStorage.getItem('phoneNumber') !== null) {
-      if(localStorage.getItem('name') !== undefined && localStorage.getItem('name') !== null) {
-        if(localStorage.getItem('town') !== undefined && localStorage.getItem('town') !== null) {
+    if (localStorage.getItem('phoneNumber') !== undefined && localStorage.getItem('phoneNumber') !== null) {
+      if (localStorage.getItem('name') !== undefined && localStorage.getItem('name') !== null) {
+        if (localStorage.getItem('town') !== undefined && localStorage.getItem('town') !== null) {
 
           this.form = new FormGroup({
             company: new FormControl('0', [Validators.required]),

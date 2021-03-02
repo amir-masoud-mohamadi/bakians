@@ -39,7 +39,7 @@ export class LoginPage implements OnInit {
 
       if(this.form.value.phone !==null && this.form.value.phone !==undefined) {
         if (this.form.value.phone.toString().length === 11){
-          if(this.form.value.password !==null && this.form.value.password !==undefined && this.form.value.password > 5) {
+          if(this.form.value.password !== null && this.form.value.password !== undefined && this.form.value.password > 5) {
           let phone = this.form.value.phone.toString();
           phone = phone.replace('0', '');
           console.log('10');
@@ -51,7 +51,7 @@ export class LoginPage implements OnInit {
                 this.loading.dismiss();
                 this.router.navigate(['/', 'location-permision']);
               }
-              if(com.body.success == '0') {
+              if (com.body.success === '0') {
                 this.loading.dismiss();
                 this.alertCtrl.create({
                   message: 'شماره موبایل یا رمز عبور اشتباه است', buttons: [
@@ -63,7 +63,7 @@ export class LoginPage implements OnInit {
                 }).then(alertEl => {
                   alertEl.present();
                 });
-              } else if(com.body.success == '-1') {
+              } else if(com.body.success === '-1') {
                 this.alertCtrl.create({
                   message: 'خطا در ورود به سامانه', buttons: [
                     {
@@ -94,8 +94,9 @@ export class LoginPage implements OnInit {
             });
           });
           } else {
-            if (this.form.value.password !==null && this.form.value.password !==undefined ){
+            if (this.form.value.password !== null && this.form.value.password !== undefined ){
             this.loading.dismiss();
+            console.log('sadsadsadsadasdsadsad');
             this.alertCtrl.create({
               message: 'رمزعبور حداقل باید شش کاراکتر باشد' , buttons: [
                 {

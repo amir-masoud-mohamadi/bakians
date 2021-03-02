@@ -5,6 +5,7 @@ import { LoadingController, AlertController} from '@ionic/angular';
 import {loginRegister} from "../../shared/service/login-register";
 import {DataModel} from "./data-model";
 import {HttpResponse} from '@angular/common/http';
+import jsSHA from 'jssha';
 @Component({
   selector: 'app-code',
   templateUrl: './code.page.html',
@@ -22,7 +23,7 @@ export class CodePage implements OnInit {
     ) { }
 
   ngOnInit() {
-    if(localStorage.getItem('phoneNumber') !== undefined && localStorage.getItem('phoneNumber') !== null) {
+    if (localStorage.getItem('phoneNumber') !== undefined && localStorage.getItem('phoneNumber') !== null) {
     this.phoneNumber = localStorage.getItem('phoneNumber');
     this.form = new FormGroup({
       code: new FormControl(null, [Validators.required, Validators.maxLength(4)]),
@@ -48,33 +49,21 @@ export class CodePage implements OnInit {
       this.loading.create({message: 'ذخیره سازی ...', keyboardClose: true}).then(load => {
         load.present();
         if (parseInt(this.form.value.code)){
-          this.userService.validCode(this.form.value.code).subscribe((com: HttpResponse<DataModel>) => {
-            if (com.status === 200) {
-              if(com.body.success == '1') {
-                console.log(com.body);
-                this.loading.dismiss();
-                this.router.navigate(['/', 'register', 'confirm']);
-              } else if(com.body.success == '0') {
-                this.loading.dismiss();
-                this.alertCtrl.create({
-                  message: 'کد تایید اشتباه است', buttons: [
-                    {
-                      text: 'تایید',
-                      role: 'cancel'
-                    }
-                  ]
-                }).then(alertEl => {
-                  alertEl.present();
-                });
-              }
-            }
-            console.log('com');
-            console.log(com);
-
-          }, err => {
-            this.errorMsg = 'خطا در ورود به سامانه:' + err.status;
+          const codeStorage = localStorage.getItem('code');
+          const shaObj = new jsSHA('SHA-256', 'TEXT');
+          shaObj.update(this.form.value.code);
+          const hash = shaObj.getHash('HEX');
+          console.log('hash');
+          console.log(hash);
+          console.log('this.form.value.code');
+          console.log(this.form.value.code);
+          if (hash === codeStorage) {
+            this.loading.dismiss();
+            this.router.navigate(['/', 'register', 'confirm']);
+          } else {
             this.loading.dismiss();
             this.alertCtrl.create({
+
               message: 'کد تایید اشتباه است', buttons: [
                 {
                   text: 'تایید',
@@ -84,7 +73,8 @@ export class CodePage implements OnInit {
             }).then(alertEl => {
               alertEl.present();
             });
-          });
+
+          }
         } else {
           this.loading.dismiss();
           this.alertCtrl.create({
