@@ -5,6 +5,7 @@ import {loginRegister} from '../../shared/service/login-register';
 import {AlertController, LoadingController} from '@ionic/angular';
 import {HttpResponse} from '@angular/common/http';
 import {DataModel2} from '../../register/data-model2';
+import {DataModel} from '../../register/code/data-model';
 
 @Component({
   selector: 'app-forget',
@@ -41,12 +42,14 @@ export class ForgetPage implements OnInit {
           let phone = this.form.value.phone.toString();
           phone = phone.replace('0', '');
           console.log('10');
-          this.userService.forget(phone).subscribe((com: HttpResponse<DataModel2>) => {
+          this.userService.forget(phone).subscribe((com: HttpResponse<DataModel>) => {
             if (com.status === 200) {
               if (com.body.success === '1'){
                 console.log(com.body);
+                localStorage.setItem('code', com.body.code);
+                localStorage.setItem('phoneNumber', phone);
                 this.loading.dismiss();
-                this.router.navigate(['/', 'register-login']);
+                this.router.navigate(['/', 'register', 'code']);
               }
               if (com.body.success === '0') {
                 this.loading.dismiss();

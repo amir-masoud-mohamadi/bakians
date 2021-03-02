@@ -23,8 +23,9 @@ export class loginRegister {
     return this.http.post('http://bakian.ir/sb/sign/login.php',  code, {observe: 'response'}).pipe(take(1));
   }
   forget(code){
+    const asd = {phone : code};
 
-    return this.http.post('http://bakian.ir/sb/sign/sendCodeForget.php',  code, {observe: 'response'}).pipe(take(1));
+    return this.http.post('http://bakian.ir/sb/sign/sendCodeForget.php',  asd, {observe: 'response'}).pipe(take(1));
   }
   verifyForget(code){
 
@@ -40,11 +41,11 @@ export class loginRegister {
   }
   company(){
 
-    return this.http.post('http://bakian.ir/sb/services/getCompanies.php', {observe: 'response'}).pipe(take(1));
+    return this.http.post('http://bakian.ir/sb/services/getCarCompanies.php', {observe: 'response'}).pipe(take(1));
   }
   car(id){
 
-    return this.http.post('http://bakian.ir/sb/services/getModels.php', id, {observe: 'response'}).pipe(take(1));
+    return this.http.post('http://bakian.ir/sb/services/getCarModels.php', id, {observe: 'response'}).pipe(take(1));
   }
   confirm(code){
 
