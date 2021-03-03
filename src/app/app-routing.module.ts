@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
-import {AppComponent} from "./app.component";
-
 const routes: Routes = [
   {
     path: '',
@@ -20,6 +18,10 @@ const routes: Routes = [
   {
     path: 'register',
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
+  },
+  {
+    path: 'register/code/:forget',
+    loadChildren: () => import('./register/code/code.module').then( m => m.CodePageModule)
   },
   {
     path: 'register/code',
@@ -49,8 +51,10 @@ const routes: Routes = [
     path: 'register/license-plate',
     loadChildren: () => import('./register/town-list/town-list.module').then(m => m.TownListPageModule)
   },
-
-
+  {
+    path: 'change-password',
+    loadChildren: () => import('./forget/change-password/change-password.module').then( m => m.ChangePasswordPageModule)
+  },
 ];
 
 @NgModule({

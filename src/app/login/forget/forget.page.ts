@@ -49,7 +49,7 @@ export class ForgetPage implements OnInit {
                 localStorage.setItem('code', com.body.code);
                 localStorage.setItem('phoneNumber', phone);
                 this.loading.dismiss();
-                this.router.navigate(['/', 'register', 'code']);
+                this.router.navigate(['/', 'register', 'code', 'forget']);
               }
               if (com.body.success === '0') {
                 this.loading.dismiss();

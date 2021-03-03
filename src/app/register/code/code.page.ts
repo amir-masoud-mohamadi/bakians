@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Params, Route, Router} from '@angular/router';
 import { LoadingController, AlertController} from '@ionic/angular';
 import {loginRegister} from "../../shared/service/login-register";
 import {DataModel} from "./data-model";
@@ -13,6 +13,8 @@ import jsSHA from 'jssha';
 })
 export class CodePage implements OnInit {
   phoneNumber;
+  id;
+  flag = false;
   form: FormGroup;
   errorMsg;
   constructor(
@@ -20,9 +22,17 @@ export class CodePage implements OnInit {
     private userService: loginRegister,
     private router: Router,
     private alertCtrl: AlertController,
+    private route: ActivatedRoute
     ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.route.params.subscribe((params: Params) => {
+      if (params.forget) {
+        this.flag = true;
+      } else {
+        this.flag = false;
+      }
+    });
     if (localStorage.getItem('phoneNumber') !== undefined && localStorage.getItem('phoneNumber') !== null) {
     this.phoneNumber = localStorage.getItem('phoneNumber');
     this.form = new FormGroup({
@@ -59,7 +69,11 @@ export class CodePage implements OnInit {
           console.log(this.form.value.code);
           if (hash === codeStorage) {
             this.loading.dismiss();
-            this.router.navigate(['/', 'register', 'confirm']);
+            if (this.flag) {
+              this.router.navigate(['/', 'change-password']);
+            } else {
+              this.router.navigate(['/', 'register', 'confirm']);
+            }
           } else {
             this.loading.dismiss();
             this.alertCtrl.create({
