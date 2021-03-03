@@ -1,18 +1,16 @@
-.map-wrapper {
-  height: 100%;
-  position: relative;
-  width: 100%;
+.color-register2{
+  width: 300px;
+  height: 43px;
+  font-weight: bold;
+  border-radius: 10px !important;
+
 }
 
-.map-wrapper .mapboxgl-map {
-  height: 100%;
+.abso{
+  position: fixed;
+  bottom: 5%;
+  right: 0;
   left: 0;
-  position: absolute;
-  top: 0;
-  width: 100%;
-}
+  margin: 0 auto;
 
-#container, .mapir-wrapper {
-  height: 100%;
-  width: 100%;
 }

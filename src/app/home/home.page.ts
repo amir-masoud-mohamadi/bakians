@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ProductComponent} from './product/product.component';
+import {ModalController} from '@ionic/angular';
 
 
 @Component({
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  constructor() { }
+  constructor(private modalController: ModalController) { }
 
   async ngOnInit() {
     /*if  (!Capacitor.isPluginAvailable('Geolocation')) {
@@ -17,5 +19,11 @@ export class HomePage implements OnInit {
       console.log('Current', coordinates);
     }*/
   }
-
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: ProductComponent,
+      cssClass: 'custom-modal'
+    });
+    return await modal.present();
+  }
 }
