@@ -1,0 +1,76 @@
+
+
+<ion-content>
+  <ion-header >
+
+    <ion-toolbar color="light">
+      <ion-buttons slot="start">
+        <ion-button (click)="closePage()">
+          <ion-icon name="close-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+
+    </ion-toolbar>
+  </ion-header>
+  <ion-grid>
+    <ion-row class="offer-margin">
+      <ion-col size-md="4" offset-md="4" size-xs="12">
+      <h3 class="header-register">افزودن کد تخفیف</h3>
+
+
+    </ion-col>
+      <ion-col size-md="3" offset-md="4" size-xs="12">
+
+        <ion-input class="input-register" placeholder="کد تخفیف را وارد نمایید" ></ion-input>
+
+      </ion-col>
+      <ion-col size-md="1" size-xs="12">
+        <ion-button class="color-register3" fill="outline" [routerLink]="['/', 'login']">تایید</ion-button>
+      </ion-col>
+      <!--<ion-col size-md="1" size-xs="12">
+
+      </ion-col>-->
+    </ion-row>
+    <ion-row>
+
+
+      <ion-col   [ngStyle]="{'border': flagClass ? '1px solid #41D5FB' : 'none' }" (click)="clickpayment()"  class="box" size-md="4" offset-md="4" size-xs="12">
+        <div  class="img-div">
+          <img class="box-img" style="float: right;"  src="../../assets/img/offer.png" alt="">
+
+        </div>
+        <h6 class="header-register box-h2 box-h3" >تخفیف 20% برای اولین خرید باتری </h6>
+        <p class="offer-text">معتبر تا۲۶ اسفند ۱۳۹۹ <span class="code-number" *ngIf="phoneNumber">{{phoneNumber}}</span> </p>
+
+        <ion-icon *ngIf="flagClass" name="checkbox-outline" class="icon-check"></ion-icon>
+      </ion-col>
+
+      <ion-col   [ngStyle]="{'border': flagClass ? '1px solid #41D5FB' : 'none' }" (click)="clickpayment()"  class="box" size-md="4" offset-md="4" size-xs="12">
+        <div class="img-div" >
+          <img class="box-img" style="float: right;"  src="../../assets/img/offer.png" alt="">
+
+        </div>
+        <h6 class="header-register box-h2 box-h3">تخفیف 20% برای دومین خرید باتری  </h6>
+        <p class="offer-text">معتبر تا۲۶ اسفند ۱۳۹۹  <span class="code-number" *ngIf="phoneNumber">{{phoneNumber}}</span> </p>
+
+        <ion-icon *ngIf="flagClass" name="checkbox-outline" class="icon-check"></ion-icon>
+      </ion-col>
+      <ion-col  [ngStyle]="{'border': flagClass ? '1px solid #41D5FB' : 'none' }" (click)="clickpayment()"  class="box" size-md="4" offset-md="4" size-xs="12">
+        <div class="img-div" >
+          <img class="box-img" style="float: right;"  src="../../assets/img/offer.png" alt="">
+
+        </div>
+        <h6 class="header-register box-h2 box-h3">تخفیف 20% برای سومین خرید باتری  </h6>
+        <p class="offer-text">معتبر تا۲۶ اسفند ۱۳۹۹ <span class="code-number" *ngIf="phoneNumber">{{phoneNumber}}</span> </p>
+
+        <ion-icon *ngIf="flagClass" name="checkbox-outline" class="icon-check"></ion-icon>
+      </ion-col>
+
+      <ion-col size-md="4" offset-md="4" size-xs="12" class="button-grid">
+        <button class="color-register" expand="full" type="submit">استفاده از کد</button>
+      </ion-col>
+    </ion-row>
+
+
+  </ion-grid>
+</ion-content>
