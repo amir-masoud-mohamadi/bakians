@@ -22,14 +22,12 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
     this.form = new FormGroup({
-      phone: new FormControl(null, [Validators.required, Validators.maxLength(1)]),
-      password: new FormControl(null, [Validators.required, Validators.maxLength(1)]),
+      phone: new FormControl(null, [Validators.required]),
 
     });
   }
   addRecipe(){
     console.log(this.form.value);
-    console.log(this.form.value.password);
 
     /*this.userService.login(this.form.value).subscribe(com => {
       console.log(com);
@@ -37,19 +35,21 @@ export class LoginPage implements OnInit {
     this.loading.create({message: 'لطفا صبر کنید ...', keyboardClose: true}).then(load => {
       load.present();
 
-      if(this.form.value.phone !==null && this.form.value.phone !==undefined) {
+      if (this.form.value.phone !== null && this.form.value.phone !== undefined) {
         if (this.form.value.phone.toString().length === 11){
-          if(this.form.value.password !== null && this.form.value.password !== undefined && this.form.value.password > 5) {
           let phone = this.form.value.phone.toString();
           phone = phone.replace('0', '');
           console.log('10');
-          this.userService.login(this.form.value).subscribe((com: HttpResponse<DataModel2>) => {
+          const url = {
+            phone,
+          };
+          this.userService.login(url).subscribe((com: HttpResponse<DataModel2>) => {
             if (com.status === 200) {
               if (com.body.success === '1'){
                 console.log(com.body);
                 localStorage.setItem('token', com.body.token);
                 this.loading.dismiss();
-                this.router.navigate(['/', 'location-permision']);
+                this.router.navigate(['/', 'license-plate']);
               }
               if (com.body.success === '0') {
                 this.loading.dismiss();
@@ -63,7 +63,7 @@ export class LoginPage implements OnInit {
                 }).then(alertEl => {
                   alertEl.present();
                 });
-              } else if(com.body.success === '-1') {
+              } else if (com.body.success === '-1') {
                 this.alertCtrl.create({
                   message: 'خطا در ورود به سامانه', buttons: [
                     {
@@ -93,34 +93,6 @@ export class LoginPage implements OnInit {
               alertEl.present();
             });
           });
-          } else {
-            if (this.form.value.password !== null && this.form.value.password !== undefined ){
-            this.loading.dismiss();
-            console.log('sadsadsadsadasdsadsad');
-            this.alertCtrl.create({
-              message: 'رمزعبور حداقل باید شش کاراکتر باشد' , buttons: [
-                {
-                  text: 'تایید',
-                  role: 'cancel'
-                }
-              ]
-            }).then(alertEl => {
-              alertEl.present();
-            });
-            } else {
-              this.loading.dismiss();
-              this.alertCtrl.create({
-                message: 'رمزعبور خود را وارد کنید' , buttons: [
-                  {
-                    text: 'تایید',
-                    role: 'cancel'
-                  }
-                ]
-              }).then(alertEl => {
-                alertEl.present();
-              });
-            }
-          }
         } else {
           this.loading.dismiss();
           this.alertCtrl.create({

@@ -48,7 +48,7 @@ const routes: Routes = [
     loadChildren: () => import('./register/town-list/town-list.module').then(m => m.TownListPageModule)
   },
   {
-    path: 'register/license-plate',
+    path: 'license-plate',
     loadChildren: () => import('./register/town-list/town-list.module').then(m => m.TownListPageModule)
   },
   {

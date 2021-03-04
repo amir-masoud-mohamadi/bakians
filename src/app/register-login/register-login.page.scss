@@ -19,67 +19,16 @@
   color: white;
   font-weight: bold;
   border-radius: 10px;
-  width: 114px;
+  width: 100%;
   height: 43px;
   position: absolute;
   bottom: 6%;
   right: 0;
+  left: 0;
+  margin: 0 auto;
 
 }
-@media only screen and (min-width: 400px) {
-  .color-register {
-    left: 6% !important;
-  }
-}
-  @media only screen and (min-width: 400px) {
-    .color-login {
-      right: 6% !important;
-    }
-}
-@media only screen and (min-width: 500px) {
-  .color-register {
-    left: 16% !important;
-  }
-}
-@media only screen and (min-width: 500px ) {
-  .color-login {
-    right: 16% !important;
-  }
-}
-@media only screen and (min-width: 576px) {
-  .color-register {
-    left: 6% !important;
-  }
-}
-@media only screen and (min-width: 576px ) {
-  .color-login {
-    right: 6% !important;
-  }
-}
-@media only screen and (min-width: 576px) {
-  .color-register {
-    left: 6% !important;
-    bottom: 15% !important;
-  }
-}
-@media only screen and (min-width: 576px ) {
-  .color-login {
-    right: 6% !important;
-    bottom: 15% !important;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .color-register {
-    left: 15% !important;
-    bottom: 20% !important;
-  }
-}
-@media only screen and (min-width: 1000px ) {
-  .color-login {
-    right: 15% !important;
-    bottom: 20% !important;
-  }
-}
+
 .color-register{
   background-color: white;
   color: #3cd0fc;

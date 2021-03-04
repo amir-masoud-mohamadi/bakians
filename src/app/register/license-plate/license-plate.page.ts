@@ -157,44 +157,29 @@ export class LicensePlatePage implements OnInit {
 
 
   constructor(private userService: loginRegister,
-              private alertCtrl : AlertController,
-              private loading : LoadingController,
-              private router : Router,
+              private alertCtrl: AlertController,
+              private loading: LoadingController,
+              private router: Router,
               ) { }
 
   ngOnInit() {
     if (localStorage.getItem('phoneNumber') !== undefined && localStorage.getItem('phoneNumber') !== null) {
-      if (localStorage.getItem('name') !== undefined && localStorage.getItem('name') !== null) {
-        if (localStorage.getItem('town') !== undefined && localStorage.getItem('town') !== null) {
-
-          this.form = new FormGroup({
-            company: new FormControl('0', [Validators.required]),
-            model: new FormControl('0', [Validators.required]),
-            plate: new FormGroup(
-              {
-                plate1: new FormControl(null, [Validators.required]),
-                plate2: new FormControl('00', [Validators.required]),
-                plate3: new FormControl(null, [Validators.required]),
-                plate4: new FormControl(null, [Validators.required]),
-              }
-            )
-          });
-          this.dis();
-        }else {
-          this.router.navigate(['/', 'register']);
-        }
-      } else {
-        this.router.navigate(['/', 'register']);
-      }
+      this.form = new FormGroup({
+        company: new FormControl('0', [Validators.required]),
+        model: new FormControl('0', [Validators.required]),
+        plate: new FormGroup(
+          {
+            plate1: new FormControl(null, [Validators.required]),
+            plate2: new FormControl('00', [Validators.required]),
+            plate3: new FormControl(null, [Validators.required]),
+            plate4: new FormControl(null, [Validators.required]),
+          }
+        )
+      });
+      this.dis();
     } else {
       this.router.navigate(['/', 'register']);
     }
-
-
-
-
-
-
   }
 
   async dis() {
