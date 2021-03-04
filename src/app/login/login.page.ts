@@ -49,7 +49,7 @@ export class LoginPage implements OnInit {
                 console.log(com.body);
                 localStorage.setItem('token', com.body.token);
                 this.loading.dismiss();
-                this.router.navigate(['/', 'license-plate']);
+                this.router.navigate(['/', 'register', 'code']);
               }
               if (com.body.success === '0') {
                 this.loading.dismiss();
