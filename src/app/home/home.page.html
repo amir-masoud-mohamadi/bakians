@@ -1,14 +1,20 @@
 
+  <div id="container" style="width: 100%!important;height: 100% !important">
+    <mgl-map
+      [zoom]="[5]"
+      [center]="center"
+      [centerWithPanTo]="true"
+      [interactive]="true"
+      [apiKey]="apiKey"
+      (click)="clicked($event)"
+    >
+      <mgl-marker
+      [lngLat]="markerPosition"
+      [draggable]="true"
+      (dragEnd)="dragged($event)"
+      anchor="top"
+      ></mgl-marker>
+    </mgl-map>
+  </div>
 
-<ion-content>
 
-
-  <ion-grid>
-    <ion-row>
-
-        <ion-button class="color-register2 abso" (click)="presentModal()" type="submit">تایید مقصد</ion-button>
-
-
-    </ion-row>
-  </ion-grid>
-</ion-content>

@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { HomePageRoutingModule } from './home-routing.module';
-
+import { NgxMapboxGLModule } from 'mapir-angular-component';
 import { HomePage } from './home.page';
 import {ProductComponent} from './product/product.component';
 
@@ -16,6 +16,7 @@ import {ProductComponent} from './product/product.component';
     FormsModule,
     IonicModule,
     HomePageRoutingModule,
+    NgxMapboxGLModule
 
   ],
   declarations: [HomePage]
