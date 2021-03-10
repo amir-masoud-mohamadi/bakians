@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Params, Route, Router} from '@angular/router';
 import { LoadingController, AlertController} from '@ionic/angular';
-import {loginRegister} from "../../shared/service/login-register";
-import {DataModel} from "./data-model";
+import {loginRegister} from '../../shared/service/login-register';
+
 import {HttpResponse} from '@angular/common/http';
-import jsSHA from 'jssha';
+import {DataModel2} from '../data-model2';
 @Component({
   selector: 'app-code',
   templateUrl: './code.page.html',
@@ -25,8 +25,8 @@ export class CodePage implements OnInit {
     private route: ActivatedRoute
     ) { }
 
-  async ngOnInit() {
-    await this.route.params.subscribe((params: Params) => {
+   ngOnInit() {
+     this.route.params.subscribe((params: Params) => {
       if (params.forget) {
         this.flag = true;
       } else {
@@ -40,7 +40,7 @@ export class CodePage implements OnInit {
 
     });
     } else {
-      this.router.navigate(['/', 'register']);
+      this.router.navigate(['/', 'login']);
     }
   }
   addRecipe(){
@@ -59,26 +59,63 @@ export class CodePage implements OnInit {
       this.loading.create({message: 'ذخیره سازی ...', keyboardClose: true}).then(load => {
         load.present();
         if (parseInt(this.form.value.code)){
-          const codeStorage = localStorage.getItem('code');
-          const shaObj = new jsSHA('SHA-256', 'TEXT');
-          shaObj.update(this.form.value.code);
-          const hash = shaObj.getHash('HEX');
-          console.log('hash');
-          console.log(hash);
-          console.log('this.form.value.code');
-          console.log(this.form.value.code);
-          if (hash === codeStorage) {
-            this.loading.dismiss();
-            if (this.flag) {
-              this.router.navigate(['/', 'change-password']);
-            } else {
-              this.router.navigate(['/', 'register', 'confirm']);
+          const phone = {
+            code: this.form.value.code,
+            phone: localStorage.getItem('phoneNumber')
+          };
+          this.userService.login(phone).subscribe((com: HttpResponse<DataModel2>) => {
+            if (com.status === 200) {
+              if (com.body.success === '1'){
+                console.log(com.body);
+                localStorage.setItem('token', com.body.token);
+                this.loading.dismiss();
+                this.alertCtrl.create({
+                  message: com.body.message , buttons: [
+                    {
+                      text: 'تایید',
+                      handler: () => {
+                        this.router.navigate(['/', 'location-permision']);
+                      }
+                    }
+                  ]
+                }).then(alertEl => {
+                  alertEl.present();
+                });
+              }
+              if (com.body.success === '0') {
+                this.loading.dismiss();
+                this.alertCtrl.create({
+                  message: com.body.message, buttons: [
+                    {
+                      text: 'تایید',
+                      role: 'cancel'
+                    }
+                  ]
+                }).then(alertEl => {
+                  alertEl.present();
+                });
+              } else if (com.body.success === '-1') {
+                this.loading.dismiss();
+                this.alertCtrl.create({
+                  message: com.body.message, buttons: [
+                    {
+                      text: 'تایید',
+                      role: 'cancel'
+                    }
+                  ]
+                }).then(alertEl => {
+                  alertEl.present();
+                });
+              }
             }
-          } else {
+            console.log('com');
+            console.log(com);
+
+          }, err => {
+            this.errorMsg = 'خطا در ورود به سامانه:' + err.status;
             this.loading.dismiss();
             this.alertCtrl.create({
-
-              message: 'کد تایید اشتباه است', buttons: [
+              message: this.errorMsg, buttons: [
                 {
                   text: 'تایید',
                   role: 'cancel'
@@ -87,8 +124,8 @@ export class CodePage implements OnInit {
             }).then(alertEl => {
               alertEl.present();
             });
+          });
 
-          }
         } else {
           this.loading.dismiss();
           this.alertCtrl.create({

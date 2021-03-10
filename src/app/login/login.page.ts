@@ -43,18 +43,29 @@ export class LoginPage implements OnInit {
           const url = {
             phone,
           };
-          this.userService.login(url).subscribe((com: HttpResponse<DataModel2>) => {
+          this.userService.reciveCode(url).subscribe((com: HttpResponse<DataModel2>) => {
             if (com.status === 200) {
               if (com.body.success === '1'){
                 console.log(com.body);
-                localStorage.setItem('token', com.body.token);
+                localStorage.setItem('phoneNumber', phone);
                 this.loading.dismiss();
-                this.router.navigate(['/', 'register', 'code']);
+                this.alertCtrl.create({
+                  message: 'کد تایید ارسال شد' , buttons: [
+                    {
+                      text: 'تایید',
+                      handler: () => {
+                  this.router.navigate(['/', 'register', 'code']);
+                }
+                    }
+                  ]
+                }).then(alertEl => {
+                  alertEl.present();
+                });
               }
               if (com.body.success === '0') {
                 this.loading.dismiss();
                 this.alertCtrl.create({
-                  message: 'شماره موبایل یا رمز عبور اشتباه است', buttons: [
+                  message: com.body.message, buttons: [
                     {
                       text: 'تایید',
                       role: 'cancel'
@@ -64,8 +75,9 @@ export class LoginPage implements OnInit {
                   alertEl.present();
                 });
               } else if (com.body.success === '-1') {
+                this.loading.dismiss();
                 this.alertCtrl.create({
-                  message: 'خطا در ورود به سامانه', buttons: [
+                  message: com.body.message, buttons: [
                     {
                       text: 'تایید',
                       role: 'cancel'

@@ -122,3 +122,9 @@ ion-button.color-register3 {
   --height: 90%;
   --border-radius: 10px !important;
 }
+@media only screen and (max-width: 454px) {
+  .custom-modal {
+    --width: 100% !important;
+    --height: 100% !important;
+  }
+}

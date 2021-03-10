@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -8,6 +8,7 @@ import { HomePageRoutingModule } from './home-routing.module';
 import { NgxMapboxGLModule } from 'mapir-angular-component';
 import { HomePage } from './home.page';
 import {ProductComponent} from './product/product.component';
+import {SearchComponent} from './search/search.component';
 
 
 @NgModule({
@@ -16,9 +17,10 @@ import {ProductComponent} from './product/product.component';
     FormsModule,
     IonicModule,
     HomePageRoutingModule,
-    NgxMapboxGLModule
+    NgxMapboxGLModule,
+    ReactiveFormsModule
 
   ],
-  declarations: [HomePage]
+  declarations: [HomePage, SearchComponent]
 })
 export class HomePageModule {}

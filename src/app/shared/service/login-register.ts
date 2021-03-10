@@ -7,8 +7,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 })
 export class loginRegister {
   reciveCode(phone){
-    const phones = {phone};
-    return this.http.post('http://bakian.ir/sb/sign/sendCode.php',  phones, {observe: 'response'}).pipe(take(1));
+    return this.http.post('http://bakian.ir/sb/sign/sendCode.php',  phone, {observe: 'response'}).pipe(take(1));
   }
   validCode(code){
     const phones = {

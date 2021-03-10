@@ -8,6 +8,19 @@
   position: fixed;
   bottom: 0px;
 }
+@media only screen and (max-width: 568px) {
+  .box-img {
+    width: 50px !important;
+  }
+}
+@media only screen and (max-width: 472px) {
+  .box-img {
+    margin-top: 16px;
+  }
+}
+.battery-image{
+  display: inline-flex;
+}
 .button-grid2{
   margin-top: 2%;
 }
@@ -100,11 +113,16 @@
 
 }
 .box{
-
   border-radius: 7px;
   padding: 1.5% 1.5% 1.5% 1.5%;
   background-color:#F7F8FA ;
   margin-bottom: 2%;
+}
+.last-box{
+  border-radius: 7px;
+  padding: 1.5% 1.5% 1.5% 1.5%;
+  background-color:#F7F8FA ;
+  margin-bottom: 5%;
 }
 .icon-check{
   text-align: left;
@@ -157,4 +175,50 @@
   left: 0;
   margin: 0 auto;
   padding-top: 5px;
+}
+@media only screen and (min-width: 955px) and (max-width: 1055px) {
+  .last-box {
+    margin-bottom: 6.5%;
+  }
+}
+@media only screen and (min-width: 855px) and (max-width: 955px) {
+  .last-box {
+    margin-bottom: 8.5%;
+  }
+}
+@media only screen and (min-width: 755px) and (max-width: 855px) {
+  .last-box {
+    margin-bottom: 10.5%;
+  }
+}
+@media only screen and (min-width: 655px) and (max-width: 755px) {
+  .last-box {
+    margin-bottom: 12.5%;
+  }
+}
+@media only screen and (min-width: 555px) and (max-width: 655px) {
+  .last-box {
+    margin-bottom: 14.5%;
+  }
+}
+@media only screen and (min-width: 455px) and (max-width: 555px) {
+  .last-box {
+    margin-bottom: 16.5%;
+  }
+}
+@media only screen and (min-width: 355px) and (max-width: 455px) {
+  .last-box {
+    margin-bottom: 18.5%;
+  }
+}
+@media only screen and (min-width: 255px) and (max-width: 355px) {
+  .last-box {
+    margin-bottom: 20.5%;
+  }
+}
+@media only screen and(max-width: 325px) {
+  .product-text  {
+    font-size:10px ;
+    margin-top: 20px;
+  }
 }
