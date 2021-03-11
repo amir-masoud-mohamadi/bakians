@@ -6,6 +6,7 @@ import {HttpResponse} from '@angular/common/http';
 import {Map} from '../shared/service/map';
 import {SearchComponent} from './search/search.component';
 import {loginRegister} from '../shared/service/login-register';
+import {Capacitor, Plugins} from '@capacitor/core';
 
 
 @Component({
@@ -24,12 +25,17 @@ export class HomePage implements OnInit {
   apiKey: string = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjE5MDQyZGM5MGVhNmFjN2U3OWU2YWU5NjJkZDViZjQ5ZmEzZjQzZDViYzQ3MThiOTk4MzdiM2QwNjBmZjgyYzg1ZDE1ODViZjE4OGJiMDhiIn0.eyJhdWQiOiIxMjExMCIsImp0aSI6IjE5MDQyZGM5MGVhNmFjN2U3OWU2YWU5NjJkZDViZjQ5ZmEzZjQzZDViYzQ3MThiOTk4MzdiM2QwNjBmZjgyYzg1ZDE1ODViZjE4OGJiMDhiIiwiaWF0IjoxNjE0MTY4NTQ3LCJuYmYiOjE2MTQxNjg1NDcsImV4cCI6MTYxNDUxNDE0Nywic3ViIjoiIiwic2NvcGVzIjpbImJhc2ljIl19.qsSghHPPKPpcvbg-ynJ6NFgtUGJJCaaYH_UuqjxxjPUrlqmDTLNL0Z1M9phEZTwxbtL1dDQcdmjnm7RKLjUSon8LxHMYIkP9kk7Zpehh1suR_vTtjrIAkIrH1gjdmxug64knegNkmzS5uUWd4LVVbdyHuyeA9iOwjc2QoskqcTDUYk_R4qWFn7QRbTF91kbALOVBhZAgtJo1VBIj1lnBvynwMAed3KbmjuqbSV4Bdfpsoid6dEygwX1Z1CDDNe_LoCIQIWunuXnffP5Kt0R8lOrb7Lb_S9M5n2DLPc-InkyNGRxg2bcY0epZqdymKpkAvHw-BzqUhhV2VZ4oYcsMQQ';
   constructor(private modalController: ModalController, private userService: loginRegister, private map: Map, private alertCtrl: AlertController) { }
 
-   ngOnInit() {
+    ngOnInit() {
+
     if (localStorage.getItem('lat')) {
       localStorage.removeItem('lng');
       localStorage.removeItem('lat');
       localStorage.removeItem('address');
 
+    }
+    if (localStorage.getItem('latitude')) {
+      this.markerPosition = [+localStorage.getItem('lan'), +localStorage.getItem('latitude')];
+      this.center = [+localStorage.getItem('lan'), +localStorage.getItem('latitude')];
     }
     /*if  (!Capacitor.isPluginAvailable('Geolocation')) {
       console.log('incorrect');
@@ -37,6 +43,16 @@ export class HomePage implements OnInit {
       const coordinates = await Plugins.Geolocation.getCurrentPosition();
       console.log('Current', coordinates);
     }*/
+  }
+  async clickGps() {
+    if (!Capacitor.isPluginAvailable('Geolocation')) {
+      console.log('incorrect');
+    } else {
+      const coordinates = await Plugins.Geolocation.getCurrentPosition();
+      console.log('Current', coordinates);
+      this.markerPosition = [coordinates.coords.longitude, coordinates.coords.latitude];
+      this.center = [coordinates.coords.longitude, coordinates.coords.latitude];
+    }
   }
   /*async presentModal() {
     const modal = await this.modalController.create({
