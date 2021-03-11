@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {loginRegister} from "../../shared/service/login-register";
+import {loginRegister} from '../../shared/service/login-register';
 import {HttpResponse} from '@angular/common/http';
-import {DataModel4} from "./data-model4";
+import {DataModel4} from './data-model4';
 import {AlertController, LoadingController} from '@ionic/angular';
-import {DataModel5} from "./data-model5";
-import {DataModel2} from "../data-model2";
+import {DataModel5} from './data-model5';
+
 import {Router} from '@angular/router';
-import {DataModel3} from "../town-list/data-model3";
+
 @Component({
   selector: 'app-license-plate',
   templateUrl: './license-plate.page.html',
@@ -163,23 +163,19 @@ export class LicensePlatePage implements OnInit {
               ) { }
 
   ngOnInit() {
-    if (localStorage.getItem('phoneNumber') !== undefined && localStorage.getItem('phoneNumber') !== null) {
-      this.form = new FormGroup({
-        company: new FormControl('0', [Validators.required]),
-        model: new FormControl('0', [Validators.required]),
-        plate: new FormGroup(
-          {
-            plate1: new FormControl(null, [Validators.required]),
-            plate2: new FormControl('00', [Validators.required]),
-            plate3: new FormControl(null, [Validators.required]),
-            plate4: new FormControl(null, [Validators.required]),
-          }
-        )
-      });
-      this.dis();
-    } else {
-      this.router.navigate(['/', 'register']);
-    }
+    this.form = new FormGroup({
+      company: new FormControl('0', [Validators.required]),
+      model: new FormControl('0', [Validators.required]),
+
+    });
+    this.dis();
+
+
+
+
+
+
+
   }
 
   async dis() {
@@ -238,6 +234,7 @@ export class LicensePlatePage implements OnInit {
             this.listModels.push(com.body.car_models[i]);
           console.log('this.listModels');
           console.log(this.listModels);
+          this.form.get('model').patchValue('0');
         }else if (com.body.success === '-1') {
           this.alertCtrl.create({
             message: 'خطا در ورود به سامانه', buttons: [
@@ -326,18 +323,7 @@ export class LicensePlatePage implements OnInit {
       }).then(alertEl => {
         alertEl.present();
       });
-    } else if (this.form.value.plate.plate2 === '00') {
-      this.alertCtrl.create({
-        message: 'پلاک خودرو را وارد کنید', buttons: [
-          {
-            text: 'تایید',
-            role: 'cancel'
-          }
-        ]
-      }).then(alertEl => {
-        alertEl.present();
-      });
-    } else if (!this.form.valid) {
+    }  else if (!this.form.valid) {
         if (this.form.controls.company.value === '0'){
           this.alertCtrl.create({
             message: 'کمپانی خودرو را وارد کنید', buttons: [
@@ -361,39 +347,12 @@ export class LicensePlatePage implements OnInit {
         }).then(alertEl => {
           alertEl.present();
         });
-      } else if (!this.form.controls.plate) {
-        this.alertCtrl.create({
-          message: 'پلاک خودرو را وارد کنید', buttons: [
-            {
-              text: 'تایید',
-              role: 'cancel'
-            }
-          ]
-        }).then(alertEl => {
-          alertEl.present();
-        });
       }
     } else {
-      console.log(this.form);
-      let car = this.form.value.plate.plate4;
-      const car2 = this.form.value.plate.plate2;
-      const car3 = this.form.value.plate.plate3;
-      const car4 = this.form.value.plate.plate1;
-      const car5 = car+ car2 + car3 + car4;
-      console.log(car5);
-      const final = {
-        phone: localStorage.getItem('phoneNumber'),
-        name: localStorage.getItem('name'),
-        city_id: localStorage.getItem('town'),
-        password: localStorage.getItem('password'),
-        company_id: this.form.value.company,
-        model_id: this.form.value.model,
-        car_tag: car
-      };
-      console.log(final);
+
       this.loading.create({message: 'ذخیره سازی ...', keyboardClose: true}).then(load => {
         load.present();
-          this.userService.confirm(final).subscribe((com: HttpResponse<DataModel2>) => {
+          /*this.userService.confirm(final).subscribe((com: HttpResponse<any>) => {
             if (com.status === 200) {
               if (com.body.success === '1'){
                 console.log(com.body);
@@ -446,7 +405,7 @@ export class LicensePlatePage implements OnInit {
             }).then(alertEl => {
               alertEl.present();
             });
-          });
+          });*/
 
 
       });

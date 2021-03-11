@@ -32,23 +32,27 @@
 
 
 
-    <ion-row class="box">
-      <ion-col   size-md="10" size-xs="9" class="battery-image">
-        <img class="box-img"   src="../../../assets/img/battery2.png" alt="">
-        <p class="login-text product-text1">نوع باتری:سیلد(اتمی)برند باتری:نانو صباآمپر:60</p>
-
-      </ion-col>
 
 
+    <div *ngIf="flagBaterry">
+      <ion-row class="box" *ngFor="let battery of listBaterry">
+        <ion-col   size-md="10" size-xs="9" class="battery-image">
+          <img class="box-img"   src="{{battery.featured_src}}" alt="">
+          <p class="login-text product-text1">{{battery.title}}</p>
 
-      <ion-col size-md="2" size-xs="3">
-        <p class="login-text product-text ">2000 تومان</p>
-      </ion-col>
-
-    </ion-row>
+        </ion-col>
 
 
-    <ion-row class="box">
+
+        <ion-col size-md="2" size-xs="3">
+          <p class="login-text product-text ">{{battery.price | number:'3.0-0'}} تومان</p>
+        </ion-col>
+
+      </ion-row>
+    </div>
+
+
+   <!-- <ion-row class="box">
       <ion-col   size-md="10" size-xs="10" class="battery-image">
         <img class="box-img"   src="../../../assets/img/battery2.png" alt="">
         <p class="login-text product-text1">نوع باتری:سیلد(اتمی)برند باتری:نانو صباآمپر:60</p>
@@ -65,7 +69,7 @@
 
 
     <ion-row class="box">
-      <ion-col   size-md="10" size-xs="10" class="battery-image">
+      <ion-col size-md="10" size-xs="10" class="battery-image">
         <img class="box-img"   src="../../../assets/img/battery2.png" alt="">
         <p class="login-text product-text1">نوع باتری:سیلد(اتمی)برند باتری:نانو صباآمپر:60</p>
 
@@ -121,7 +125,7 @@
       <ion-button class="color-register2 abso" (click)="presentModal()" type="submit">درخواست باتری</ion-button>
 
 
-    </ion-row>
+    </ion-row>-->
 
   </ion-grid>
 </ion-content>

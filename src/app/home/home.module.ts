@@ -21,6 +21,6 @@ import {SearchComponent} from './search/search.component';
     ReactiveFormsModule
 
   ],
-  declarations: [HomePage, SearchComponent]
+  declarations: [HomePage, SearchComponent, ProductComponent]
 })
 export class HomePageModule {}

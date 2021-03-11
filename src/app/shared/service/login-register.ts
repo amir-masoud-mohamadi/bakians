@@ -50,5 +50,9 @@ export class loginRegister {
 
     return this.http.post('http://bakian.ir/sb/sign/register.php',  code, {observe: 'response'}).pipe(take(1));
   }
+  getBattery(code){
+
+    return this.http.post('https://bakian.ir/sb/products/getProducts.php',  code, {observe: 'response'}).pipe(take(1));
+  }
   constructor(private http: HttpClient) { }
 }

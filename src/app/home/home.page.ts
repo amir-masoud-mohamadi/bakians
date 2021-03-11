@@ -5,6 +5,7 @@ import {DataModel2} from '../register/data-model2';
 import {HttpResponse} from '@angular/common/http';
 import {Map} from '../shared/service/map';
 import {SearchComponent} from './search/search.component';
+import {loginRegister} from '../shared/service/login-register';
 
 
 @Component({
@@ -17,16 +18,18 @@ export class HomePage implements OnInit {
   location;
   errorMsg;
   input;
+  listBaterry;
   center: Array<number> = [51.338064963919834, 35.70017923069952];
   markerPosition: Array<number> = [51.338064963919834, 35.70017923069952];
   apiKey: string = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjE5MDQyZGM5MGVhNmFjN2U3OWU2YWU5NjJkZDViZjQ5ZmEzZjQzZDViYzQ3MThiOTk4MzdiM2QwNjBmZjgyYzg1ZDE1ODViZjE4OGJiMDhiIn0.eyJhdWQiOiIxMjExMCIsImp0aSI6IjE5MDQyZGM5MGVhNmFjN2U3OWU2YWU5NjJkZDViZjQ5ZmEzZjQzZDViYzQ3MThiOTk4MzdiM2QwNjBmZjgyYzg1ZDE1ODViZjE4OGJiMDhiIiwiaWF0IjoxNjE0MTY4NTQ3LCJuYmYiOjE2MTQxNjg1NDcsImV4cCI6MTYxNDUxNDE0Nywic3ViIjoiIiwic2NvcGVzIjpbImJhc2ljIl19.qsSghHPPKPpcvbg-ynJ6NFgtUGJJCaaYH_UuqjxxjPUrlqmDTLNL0Z1M9phEZTwxbtL1dDQcdmjnm7RKLjUSon8LxHMYIkP9kk7Zpehh1suR_vTtjrIAkIrH1gjdmxug64knegNkmzS5uUWd4LVVbdyHuyeA9iOwjc2QoskqcTDUYk_R4qWFn7QRbTF91kbALOVBhZAgtJo1VBIj1lnBvynwMAed3KbmjuqbSV4Bdfpsoid6dEygwX1Z1CDDNe_LoCIQIWunuXnffP5Kt0R8lOrb7Lb_S9M5n2DLPc-InkyNGRxg2bcY0epZqdymKpkAvHw-BzqUhhV2VZ4oYcsMQQ';
-  constructor(private modalController: ModalController, private map: Map, private alertCtrl: AlertController,) { }
+  constructor(private modalController: ModalController, private userService: loginRegister, private map: Map, private alertCtrl: AlertController) { }
 
-  async ngOnInit() {
+   ngOnInit() {
     if (localStorage.getItem('lat')) {
       localStorage.removeItem('lng');
       localStorage.removeItem('lat');
       localStorage.removeItem('address');
+
     }
     /*if  (!Capacitor.isPluginAvailable('Geolocation')) {
       console.log('incorrect');
@@ -108,15 +111,17 @@ export class HomePage implements OnInit {
     });
   }
   async clickButton() {
+
     const modal2 = await this.modalController.create({
       component: ProductComponent,
-      cssClass: 'custom-modal'
+      cssClass: 'custom-modal',
     });
     return await modal2.present();
   }
   async modalSearch(){
     const modal = await this.modalController.create({
       component: SearchComponent,
+      cssClass: 'custom-modal2'
     });
     modal.onDidDismiss().then((data) => {
       if (localStorage.getItem('address')) {
