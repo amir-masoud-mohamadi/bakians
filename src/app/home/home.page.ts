@@ -6,7 +6,9 @@ import {HttpResponse} from '@angular/common/http';
 import {Map} from '../shared/service/map';
 import {SearchComponent} from './search/search.component';
 import {loginRegister} from '../shared/service/login-register';
-import {Capacitor, Plugins} from '@capacitor/core';
+import { Plugins } from '@capacitor/core';
+const { Geolocation } = Plugins;
+import {async} from 'q';
 
 
 @Component({
@@ -33,10 +35,10 @@ export class HomePage implements OnInit {
       localStorage.removeItem('address');
 
     }
-    if (localStorage.getItem('latitude')) {
+    /*if (localStorage.getItem('latitude')) {
       this.markerPosition = [+localStorage.getItem('lan'), +localStorage.getItem('latitude')];
       this.center = [+localStorage.getItem('lan'), +localStorage.getItem('latitude')];
-    }
+    }*/
     /*if  (!Capacitor.isPluginAvailable('Geolocation')) {
       console.log('incorrect');
     } else {
@@ -44,7 +46,7 @@ export class HomePage implements OnInit {
       console.log('Current', coordinates);
     }*/
   }
-  async clickGps() {
+  /*async clickGps() {
     if (!Capacitor.isPluginAvailable('Geolocation')) {
       console.log('incorrect');
     } else {
@@ -53,6 +55,13 @@ export class HomePage implements OnInit {
       this.markerPosition = [coordinates.coords.longitude, coordinates.coords.latitude];
       this.center = [coordinates.coords.longitude, coordinates.coords.latitude];
     }
+  }*/
+  async clickGps() {
+    const coordinates = await Geolocation.getCurrentPosition();
+    console.log('coordinates.coords');
+    console.log(coordinates.coords);
+    this.markerPosition = [coordinates.coords.longitude, coordinates.coords.latitude];
+    this.center = [coordinates.coords.longitude, coordinates.coords.latitude];
   }
   /*async presentModal() {
     const modal = await this.modalController.create({
